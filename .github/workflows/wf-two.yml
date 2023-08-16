@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "$GITHUB_BRANCH"
           branch=$(echo $GITHUB_BRANCH | jq -r)
-          $echo $branch
+          echo "$branch"
           echo "branch=$branch" >> $GITHUB_OUTPUT
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
