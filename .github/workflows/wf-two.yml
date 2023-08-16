@@ -21,10 +21,12 @@ jobs:
       - name: Get meta-data from event payload
         id: step1
         env:
-          GITHUB_BRANCH: (${{ toJSON(github.event.workflow_run.head_branch) }} | jq -r)
+          GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
         run: |
           echo "$GITHUB_BRANCH"
-          echo "branch=$GITHUB_BRANCH" >> $GITHUB_OUTPUT
+          branch=(echo $GITHUB_BRANCH | jq -r)
+          $echo $branch
+          echo "branch=$branch" >> $GITHUB_OUTPUT
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
