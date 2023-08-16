@@ -1,4 +1,4 @@
-# github-workflow-run-event-demo
+# Workflow_run event demo
 Repo to show the behavior of the workflow_run event trigger
 
 The workflow_run trigger will only trigger a workflow that exists on the default branch.  It can be triggered by workflow runs on other branches, but the default branch version of the workflow being called is the version that will run, even if it exists on the branch that triggered it.
