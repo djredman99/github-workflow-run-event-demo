@@ -27,5 +27,10 @@ jobs:
       - name: Run a one-line script
         run: echo Hello from Workflow-Two on the \'Main\' branch
 
+      - name: Dump the event payload
+        env:
+          GITHUB_EVENT: ${{ toJSON(github.event) }}
+        run: echo "$GITHUB_EVENT" 
+
       - name: Display the Readme
         run: cat readme.md
