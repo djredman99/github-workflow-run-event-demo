@@ -24,10 +24,10 @@ jobs:
       - name: Run a one-line script
         run: echo Hello from Workflow-One on the \'Main\' branch
 
-      - name: Dump the event payload
+      - name: Show the calling Branch
         env:
-          GITHUB_EVENT: ${{ toJSON(github.event) }}
-        run: echo "$GITHUB_EVENT" 
+          GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
+        run: echo "$GITHUB_BRANCH" 
 
       - name: Display the Readme
-        run: cat readme.md
+        run: cat ./README.md
