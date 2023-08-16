@@ -26,3 +26,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello from Workflow-Two on the \'Main\' branch
+
+      - name: Display the Readme
+        run: cat readme.md
