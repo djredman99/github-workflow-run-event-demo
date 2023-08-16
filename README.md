@@ -5,9 +5,9 @@ The workflow_run trigger will only trigger a workflow that exists on the default
 
 - *The Main* is the triggering workflow.  This can be run on either the main or branch-one branches.
 
-- *Workflow-One* will trigger on the completion of *The Main*
+- *Workflow-One Triggered by Other* will trigger on the completion of *The Main*
 
-- *Workflow-Two* will also trigger on the completion of *The Main* but will determine the branch that *The Main* ran on and use that info in the checkout action to switch to/checkout the branch that triggered the run.  This will not run the branch specific version of the workflow, but will allow for building, etc. of all code on the triggering branch.
+- *Workflow-Two Triggered by Other* will also trigger on the completion of *The Main* but will determine the branch that *The Main* ran on and use that info in the checkout action to switch to/checkout the branch that triggered the run.  This will not run the branch specific version of the workflow, but will allow for building, etc. of all code on the triggering branch.
 
 
 ### I am the Readme on the MAIN branch
