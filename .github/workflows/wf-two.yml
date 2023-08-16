@@ -1,1 +1,40 @@
+# ***NOTE***
+# This workflow will never get triggered because it does not exist on the default branch
 
+name: Workflow-Two Triggered by Other
+
+on:
+  workflow_run:
+    workflows: [The Main]
+    types: completed
+    branches: [branch-one]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Get meta-data from event payload
+        id: step1
+        env:
+          GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
+        run: |
+          branch=$(echo $GITHUB_BRANCH | jq -r)
+          echo "$branch"
+          echo "branch=$branch" >> $GITHUB_OUTPUT
+        
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.step1.outputs.branch}}
+
+      # Runs a single command using the runners shell
+      - name: Display where the workflow is running from
+        run: echo Hello from Workflow-Two on the \'branch-one\' branch 
+
+      - name: Display the Readme
+        run: cat ./README.md
