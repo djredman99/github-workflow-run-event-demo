@@ -24,7 +24,7 @@ jobs:
           GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
         run: |
           echo "$GITHUB_BRANCH"
-          branch=(echo $GITHUB_BRANCH | jq -r)
+          branch=$(echo $GITHUB_BRANCH | jq -r)
           $echo $branch
           echo "branch=$branch" >> $GITHUB_OUTPUT
         
