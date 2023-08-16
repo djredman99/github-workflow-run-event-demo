@@ -18,16 +18,24 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Get meta-data from event payload
+        id: step1
+        env:
+          GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
+        run: |
+          echo "$GITHUB_BRANCH"
+          echo "branch=$GITHUB_BRANCH" >> $GITHUB_OUTPUT
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
-          ref: branch-one
+          ref: ${{ steps.step1.outputs.branch}}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello from Workflow-Two on the \'Main\' branch
 
-      - name: Dump the event payload
+      - name: Get meta-data from event payload
         env:
           GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
         run: echo "$GITHUB_BRANCH" 
