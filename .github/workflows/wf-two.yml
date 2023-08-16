@@ -21,7 +21,7 @@ jobs:
       - name: Get meta-data from event payload
         id: step1
         env:
-          GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }} | jq -r
+          GITHUB_BRANCH: (${{ toJSON(github.event.workflow_run.head_branch) }} | jq -r)
         run: |
           echo "$GITHUB_BRANCH"
           echo "branch=$GITHUB_BRANCH" >> $GITHUB_OUTPUT
