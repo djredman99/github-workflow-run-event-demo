@@ -29,8 +29,8 @@ jobs:
 
       - name: Dump the event payload
         env:
-          GITHUB_EVENT: ${{ toJSON(github.event) }}
-        run: echo "$GITHUB_EVENT" 
+          GITHUB_BRANCH: ${{ toJSON(github.event.workflow_run.head_branch) }}
+        run: echo "$GITHUB_BRANCH" 
 
       - name: Display the Readme
-        run: cat readme.md
+        run: cat ./README.md
