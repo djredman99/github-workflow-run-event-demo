@@ -19,9 +19,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        with:
-          ref: main
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello from Workflow-One on the \'Main\' branch
+
+      - name: Display the Readme
+        run: cat readme.md
