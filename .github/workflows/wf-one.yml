@@ -5,6 +5,7 @@ name: Workflow-One Triggered by Other
 # Controls when the workflow will run
 on:
   workflow_run:
+    workflows: [The Main]
     types: completed
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
